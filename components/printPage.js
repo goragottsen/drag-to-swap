@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import Actions from "./actions";
+import { DndContext } from "@dnd-kit/core";
+import Page from "./Page";
 
 const Wrapper = styled.div`
   width: 600px;
@@ -40,30 +41,38 @@ const PrintPhoto = styled.div`
   }
 `;
 
-export default function PrintPage({ data }) {
+export default function PrintPage({ pages, data, setImages }) {
+
+  const handleDragEnd = (event) => {
+    const {active, over} = event;
+
+    if(active && over && active.id !== over.id) {
+      const activeImage = data.find((image) => image.id === active.id);
+      const overImage = data.find((image) => image.id === over.id);
+
+      if (activeImage && overImage) {
+        const updatedImages = data.map((image) => {
+          if (image.id === active.id) {
+            return { ...image, page: overImage.page, pos: overImage.pos };
+          } else if (image.id === over.id) {
+            return { ...image, page: activeImage.page, pos: activeImage.pos };
+          }
+          return image;
+        });
+        setImages(updatedImages)
+      }
+    }
+  }
+
   return (
-    <>
-      <Wrapper>
-        {Object.values(data).map((entry, i) => {
-          return (
-            <PrintWrapper key={i}>
-              <Header>
-                <Title>{entry.title}</Title>
-                <Actions />
-              </Header>
-              <PageLayout>
-                {entry.images.map((image) => {
-                  return (
-                    <PrintPhoto key={image}>
-                      <img src={image} alt="" />
-                    </PrintPhoto>
-                  );
-                })}
-              </PageLayout>
-            </PrintWrapper>
-          );
+    <Wrapper>
+      <DndContext onDragEnd={handleDragEnd}>
+        {pages.map(page => {
+          return(
+            <Page key={page} page={page} images={data}/>
+          )
         })}
-      </Wrapper>
-    </>
+      </DndContext>
+    </Wrapper>
   );
 }
