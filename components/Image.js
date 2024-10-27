@@ -4,10 +4,16 @@ import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { useRef, useState } from "react";
 
 const PrintPhoto = styled.div`
-  width: calc(50% - 10px);  
+  width: calc(50% - 10px);
+  touch-action: none;
   img {
     max-width: 100%;
   }
+
+  @media screen and (max-width: 414px) {
+   
+  }
+
 `;
 
 const Image = ({url, id }) => {

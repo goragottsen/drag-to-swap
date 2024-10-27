@@ -23,6 +23,10 @@ const PageHeader = styled.div`
     color: #797979;
     margin: 0;
   }
+  @media screen and (max-width: 414px) {
+    width: 100%;
+    padding: 32px 16px 0;
+  }
 `;
 
 const imagesData = [
