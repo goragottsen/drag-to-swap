@@ -28,18 +28,18 @@ const PageLayout = styled.div`
 const Page = ({ page, images, activeId }) => {
     const filteredImages = images.filter(image => image.page === page).sort((a, b) => (a.pos === 'x' ? -1 : 1));
     return (
-        <div>
-            <Header>
-                <Title>{page}</Title>
-                <Actions />
-            </Header>
-            <PageLayout>
-                {filteredImages.map(image => {
-                    return <Image key={image.id} {...image} activeId={activeId} />
-                })}
-            </PageLayout>
-        </div>
-        );
+      <div>
+        <Header>
+          <Title>{page}</Title>
+          <Actions />
+        </Header>
+        <PageLayout>
+          {filteredImages.map(image => {
+              return <Image key={image.id} {...image} activeId={activeId} />
+          })}
+        </PageLayout>
+      </div>
+    );
 }
 
 export default Page;

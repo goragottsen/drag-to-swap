@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
-import { useRef, useState } from "react";
 import { snapCenterToCursor } from "@dnd-kit/modifiers";
 
 const PrintPhoto = styled.div`
@@ -22,7 +21,7 @@ const Image = ({url, id }) => {
             {...attributes}
             modifiers={[snapCenterToCursor]}
         >
-            <img ref={setNodeRef} src={url} alt="" />
+            <img ref={setNodeRef} src={url} alt={`Image ${id}`} />
         </PrintPhoto>
         
     )
