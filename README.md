@@ -19,6 +19,7 @@ When images are reordered, the component calls the `setImages` function with the
 ### Animation
 
 The drag-and-drop functionality is pretty much there, but I didn’t get to finish the animations. There’s some basic movement, but a smoother transition between positions is still on the to-do list.
+I assume to preserve the image and make the transition smoother, I would need to change the ref handling.
 
 ### Testing
 

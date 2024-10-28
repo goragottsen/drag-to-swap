@@ -12,7 +12,7 @@ const PrintPhoto = styled.div`
 
 const Image = ({url, id }) => {
     const {attributes, listeners, setNodeRef: setDraggableRef } = useDraggable({id})
-    const { setNodeRef } = useDroppable({ id: id });
+    const { setNodeRef } = useDroppable({ id });
 
     return (
         <PrintPhoto 

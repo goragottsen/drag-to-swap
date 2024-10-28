@@ -23,6 +23,7 @@ const ImagePreview = styled.img`
 
 export default function PrintPage({ pages, data, setImages }) {
   const [activeId, setActiveId] = useState(null);
+
   const handleDragEnd = (event) => {
     const {active, over} = event;
 
@@ -43,7 +44,7 @@ export default function PrintPage({ pages, data, setImages }) {
         setImages(updatedImages)
       }
     }
-    setActiveId(null)
+    setActiveId(null);
   }
 
   const handleDragStart = (event) => {
@@ -55,7 +56,7 @@ export default function PrintPage({ pages, data, setImages }) {
       <DndContext collisionDetection={closestCorners} onDragStart={handleDragStart} onDragEnd={handleDragEnd} >
         {pages.map(page => {
           return(
-            <Page key={page} page={page} images={data} activeId={activeId}/>
+            <Page key={page} page={page} images={data} />
           )
         })}
         <DragOverlay
