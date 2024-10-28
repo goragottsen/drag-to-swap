@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { closestCorners, DndContext, DragOverlay } from "@dnd-kit/core";
 import Page from "./Page";
 import { useState } from "react";
 import { snapCenterToCursor } from "@dnd-kit/modifiers";
+import { CSS } from '@dnd-kit/utilities';
 
 const Wrapper = styled.div`
   width: 600px;
@@ -58,6 +59,17 @@ export default function PrintPage({ pages, data, setImages }) {
     setActiveId(event.active.id);
   }
 
+  const customDropAnimation = {
+    adjustScale: true,
+    keyframes({ transform }) {
+      return [
+        { opacity: 1, transform: CSS.Transform.toString(transform.initial) },
+        { opacity: 0, transform: `scale(1.5) ${CSS.Transform.toString(transform.final)}` }
+      ];
+    },
+    duration: 250,
+  };
+
   return (
     <Wrapper>
       <DndContext collisionDetection={closestCorners} onDragStart={handleDragStart} onDragEnd={handleDragEnd} >
@@ -68,10 +80,7 @@ export default function PrintPage({ pages, data, setImages }) {
         })}
         <DragOverlay
           modifiers={[snapCenterToCursor]}
-          dropAnimation={{
-            duration: 300,
-            easing: 'linear',
-          }}
+          dropAnimation={customDropAnimation}
         >
           {activeId ? (
               <ImagePreview src={data.find((image) => image.id === activeId)?.url} alt={`Image preview`} />
