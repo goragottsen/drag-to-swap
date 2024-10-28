@@ -25,7 +25,7 @@ const PageLayout = styled.div`
   justify-content: space-between;
 `;
 
-const Page = ({ page, images }) => {
+const Page = ({ page, images, activeId }) => {
     const filteredImages = images.filter(image => image.page === page).sort((a, b) => (a.pos === 'x' ? -1 : 1));
     return (
         <div>
@@ -35,7 +35,7 @@ const Page = ({ page, images }) => {
             </Header>
             <PageLayout>
                 {filteredImages.map(image => {
-                    return <Image key={image.id} {...image} />
+                    return <Image key={image.id} {...image} activeId={activeId} />
                 })}
             </PageLayout>
         </div>
