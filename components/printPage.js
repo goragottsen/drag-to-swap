@@ -16,9 +16,16 @@ const Wrapper = styled.div`
 `;
 
 const ImagePreview = styled.img`
-  width:  60px;
-  height: 60px;
+  width:  90px;
+  height: 90px;
   border-radius: 50px;
+  border: 2px solid white;
+  object-fit: cover;
+
+  @media screen and (max-width: 414px) {
+    width:  70px;
+    height: 70px;
+  }
 `
 
 export default function PrintPage({ pages, data, setImages }) {
