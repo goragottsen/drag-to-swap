@@ -28,7 +28,7 @@ const ImagePreview = styled(motion.img)`
   }
 `;
 
-export default function PrintPage({ pages, data, setImages }) {
+export default function PrintPage({ pages, data, setImages, updateLastEdited }) {
   const [activeId, setActiveId] = useState(null);
   const [isDropping, setIsDropping] = useState(false);
   const [cursorPosition, setCursorPosition] = useState(null);
@@ -72,6 +72,7 @@ export default function PrintPage({ pages, data, setImages }) {
       }
     }
 
+    updateLastEdited()
     setIsDropping(true);
     setTimeout(() => {
       setActiveId(null);

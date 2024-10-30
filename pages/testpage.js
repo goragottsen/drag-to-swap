@@ -67,10 +67,24 @@ const pages = ["Front Print", "Page 2", "Page 3"];
 export default function Testpage() {
   const [images, setImages] = useState(imagesData);
   const [isMounted, setIsMounted] = useState(false);
+  const [lastEdited, setLastEdited] = useState("Thursday 13 April 2022 at 16:28");
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const updateLastEdited = () => {
+    const now = new Date();
+    const formattedDate = now.toLocaleString("en-GB", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    setLastEdited(formattedDate);
+  };
 
   if (!isMounted) return null;
 
@@ -83,12 +97,13 @@ export default function Testpage() {
       </Head>
       <PageHeader>
         <h1>Trip to the Beach</h1>
-        <p>Hardback Photobook last edited on Thursday 13 April 2022 at 16:28</p>
+        <p>Hardback Photobook last edited on {lastEdited}</p>
       </PageHeader>
       <PrintPage
         data={images}
         pages={pages}
         setImages={setImages}
+        updateLastEdited={updateLastEdited}
       />
     </div>
   );
