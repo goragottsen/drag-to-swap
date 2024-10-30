@@ -31,8 +31,8 @@ All dependencies are managed within the project. No additional installation step
 - **Future Improvements**: More edge case tests could be added, such as boundary testing for dragging images between rows.
 
 > **Notes**: 
-> - Initially, I used `DragOverlay` from `@dnd-kit/core` for the drag effect, but its animation style was limited. To achieve a smoother effect, I added `framer-motion` for better animation control. If I had more time, I’d explore custom style overrides for `DragOverlay` to override its style settings directly.
-
+> - Initially, I used `DragOverlay` from `@dnd-kit/core` for the drag effect, but its animation style was limited. So to achieve a smoother effect, I added `framer-motion` for better animation control. I think if I had more time, I’d explore custom style overrides for `DragOverlay` to adjust its style settings directly.
+>
 > - This implementation is functional but has room for improvement, specifically with behavior when dropping images in empty spaces.
 
 ---
