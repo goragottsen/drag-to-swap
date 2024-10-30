@@ -1,26 +1,37 @@
 # Drag-and-Drop Image Reordering
 
-This project adds drag-and-drop functionality to rearrange images within the `ImageReorderComponent`. Using `@dnd-kit/core`, you can now drag images around and drop them into new positions across pages. While I didn’t fully finish the animation part, I think it’s somehow close. It would take me a few more hours to polish the style and animation.
+This project is a drag-and-drop component for reordering images across multiple "pages" within a photobook layout. Using `@dnd-kit/core` for drag functionality, it allows users to visually arrange images across different sections.
 
-## Overview
+> **Note**: This implementation is functional but has room for improvement, specifically with behavior when dropping images in empty spaces.
 
-The idea: let users drag images around to reorder them across multiple pages. Each image has an `id`, `url`, `page`, and `pos` to keep the position on the page. The component updates the image positions whenever they’re moved, so things stay organized.
+## Features
 
-## How It Works
+- **Drag-and-Drop Across Pages**: Images can be reordered within and across pages.
+- **Cursor-Following Overlay**: Smooth overlay follows the cursor during dragging.
+- **Responsive Layout**: Desktop and mobile style support.
 
-### Drag-and-Drop Library
+## Packages Used
 
-I went with `@dnd-kit/core` because it offers flexibility and is great for custom drag-and-drop features. Each image can be dragged, and dropping it updates its position within the component.
+- **`@dnd-kit/core`**: Chosen for flexible, customizable drag-and-drop functionality. The `DndContext` and `DragOverlay` components handle the main drag mechanics.
+- **`styled-components`**: Used for component-scoped CSS with responsive styling.
+- **`framer-motion`**: Adds animations for smoother drag transitions and interactions.
 
-### State Management
+## Key Components
 
-When images are reordered, the component calls the `setImages` function with the updated positions. This makes it easy for the parent component to know the new order of images and keep everything up to date. I also ensured that the images on each page are sorted by position and can only replace other images rather than being added as new items.
+- **`PrintPage`**: Main container that manages all pages and images. It handles drag start, end, and state updates for image positioning.
+- **`Page`**: Displays images for each page, managing layout and sorting based on image position.
+- **`Image`**: The draggable image component that responds to user interactions.
 
-### Animation
+## Installation
 
-The drag-and-drop functionality is pretty much there, but I didn’t get to finish the animations. There’s some basic movement, but a smoother transition between positions is still on the to-do list.
-I assume to preserve the image and make the transition smoother, I would need to change the ref handling.
+All dependencies are managed within the project. No additional installation steps are required to run the project.
 
-### Testing
+## Testing
 
-I added a few tests to make sure PrintPage component is updated correctly after drag and drop.
+- **Unit Tests**: Basic unit tests are included to validate the drag-and-drop functionality, testing correct state updates (`setImages` calls) and overlay behavior.
+- **Future Improvements**: More edge case tests could be added, such as boundary testing for dragging images between rows.
+
+> **Note**: Initially, I used `DragOverlay` from `@dnd-kit/core` for the drag effect, but its animation style was limited. To achieve a smoother effect, I added `framer-motion` for better animation control. If I had more time, I’d explore custom style overrides for `DragOverlay` to enhance its capabilities directly.
+
+
+---
