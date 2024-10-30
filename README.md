@@ -6,14 +6,14 @@ This project is a drag-and-drop component for reordering images across multiple 
 ## Features
 
 - **Drag-and-Drop Across Pages**: Images can be reordered within and across pages.
-- **Cursor-Following Overlay**: Smooth overlay follows the cursor during dragging.
+- **Cursor-Following Overlay**: Circle overlay image follows the cursor during dragging.
 - **Responsive Layout**: Desktop and mobile style support.
 
 ## Packages Used
 
-- **`@dnd-kit/core`**: Chosen for flexible, customizable drag-and-drop functionality. The `DndContext` and `DragOverlay` components handle the main drag mechanics.
+- **`@dnd-kit/core`**: Chosen for flexible, customizable drag-and-drop functionality. `DndContext` handle the main drag mechanics.
 - **`styled-components`**: Used for component-scoped CSS with responsive styling.
-- **`framer-motion`**: Adds animations for smoother drag transitions and interactions.
+- **`framer-motion`**: Used to adjust animation on drop to comply with the requirements.
 
 ## Key Components
 
@@ -31,7 +31,7 @@ All dependencies are managed within the project. No additional installation step
 - **Future Improvements**: More edge case tests could be added, such as boundary testing for dragging images between rows.
 
 > **Notes**: 
-- Initially, I used `DragOverlay` from `@dnd-kit/core` for the drag effect, but its animation style was limited. To achieve a smoother effect, I added `framer-motion` for better animation control. If I had more time, I’d explore custom style overrides for `DragOverlay` to enhance its capabilities directly.
+- Initially, I used `DragOverlay` from `@dnd-kit/core` for the drag effect, but its animation style was limited. To achieve a smoother effect, I added `framer-motion` for better animation control. If I had more time, I’d explore custom style overrides for `DragOverlay` to override its style settings directly.
 
 - This implementation is functional but has room for improvement, specifically with behavior when dropping images in empty spaces.
 
