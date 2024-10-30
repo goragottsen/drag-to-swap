@@ -66,6 +66,13 @@ const pages = ["Front Print", "Page 2", "Page 3"];
 
 export default function Testpage() {
   const [images, setImages] = useState(imagesData);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   return (
     <div>
